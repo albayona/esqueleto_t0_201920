@@ -82,6 +82,8 @@ public  class ArregloDinamico<T extends Comparable<T>> implements IArregloDinami
 	public T eliminar(T dato) {
 		// caso de arreglo lleno (aumentar tamaNo)
 
+		T eliminado = null;
+
 		if (buscar(dato) != null) {
 
 			T[] copia = elementos;
@@ -89,13 +91,14 @@ public  class ArregloDinamico<T extends Comparable<T>> implements IArregloDinami
 			for (int i = 0; i < tamanoAct; i++) {
 				if (elementos[i].compareTo(dato) != 0)
 					elementos[i] = copia[i];
+				else {
+					tamanoAct--;
+					eliminado = elementos[i];
+				}
 			}
-			System.out.println("Arreglo lleno: " + tamanoAct + " - Arreglo duplicado: " + tamanoMax);
-
 		}
-		tamanoAct--;
 
-		return dato;
+		return eliminado;
 	}
 
 }
